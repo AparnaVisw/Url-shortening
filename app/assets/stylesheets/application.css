@@ -66,8 +66,6 @@ div.result p {
   margin:0;
   padding:0;
   line-height: 60px;
-  animation: myfirst 1s;
-  -webkit-animation: myfirst 1s; /* Safari and Chrome */
 }
 
 div.link {
@@ -81,7 +79,7 @@ p.bottom_nav {
 
 p.short_url {
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   margin-top:10px;
 }
 

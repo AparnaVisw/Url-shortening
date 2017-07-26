@@ -1,3 +1,4 @@
+require 'uri'
 class LinksController < ApplicationController
   before_action :set_link, only: [:show]
   extend ActiveModel::Callbacks
@@ -24,6 +25,8 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
+    @link = Link.find(params[:id])
+    redirect_to  @link.short_url
   end
 
   # GET /links/new
@@ -36,9 +39,14 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = Link.new(link_params)
-    debugger
     @link.save
-    @short_url = @link.id.to_s(36)
+    chars = [0..9, 'A'..'Z', 'a'..'z'].map { |range| range.to_a }.flatten
+    if URI.parse(@link.given_url).host != nil
+    @link.short_url =  URI.parse(@link.given_url).host + '/'+6.times.map { chars.sample }.join
+    else
+      @link.short_url =  @link.given_url
+    end
+    @link.save
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, notice: 'Link was successfully created.' }

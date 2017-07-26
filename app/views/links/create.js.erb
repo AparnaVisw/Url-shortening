@@ -1,2 +1,2 @@
-<% debugger %>
-$('.result').append('<p class="short_url">Your Shortened Link: <%= link_to @link.short_url, @link.short_url, target: "_blank" %></p>')
+$('.result').empty();
+$('.result').append("<p id = 'short-url'>The shortened url is : <%= @link.short_url %></p>");
