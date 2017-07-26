@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Links</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Given url</th>
+      <th>Short url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% debugger %>
+
+    <% @links.each do |link| %>
+      <tr>
+        <td><%= link.given_url %></td>
+        <td><%= link.short_url %></td>
+        <td><%= link_to 'Show', link %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Link', new_link_path %>
